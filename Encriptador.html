@@ -1,10 +1,96 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang = "es">
 <head>
      <meta charset = "UTF-8">
      <title> Encriptador Alura </title>
+     <link rel="stylesheet" href="encriptador.css">
 </head>
 <body>
      
+     <header>
+          <h1><img src="Logo.png"></h1>
+     </header>
+     <main>
+          
+          <section class="ingresarTexto">
+           <textarea id="texto" class="texto" placeholder="Ingrese texto aqui"></textarea>
+
+           
+          <div class="botones">
+               <button id="encriptar" onmousedown="obtenerTexto()" onclick="encriptar(frase)" >Encriptar</button>
+               <button id="desencriptar" onmousedown="obtenerTexto()" onclick="desencriptar(frase)">Desencriptar</button>
+          </div>
+          
+
+          </section>
+
+          <section class="cajaResultado">
+               <div class="imagen">
+                          <img src="Muñeco.png" alt="Imagen ningun mensaje encontrado">   
+                          <h3>Ningún mensaje encontrado</h3>
+                          <p>Ingresa el texto que desees encriptar o desencriptar</p>
+               </textarea>
+               </div>
+              
+                    <textarea id="resultado" readonly=""> </textarea>
+                         <button id="copiarTexto">Copiar texto</button>
+             
+               
+          </section>
+        
+          
+          
+         
+     </main>
+     
 </body>
 </html>
+
+<script>
+ var encriptado ="";
+ var desencriptado = "";
+ var frase ="";
+ var botonE= document.getElementById('encriptar');
+ var botonD= document.getElementById('desencriptar');
+
+
+ function obtenerTexto(){
+     frase = document.getElementById('texto').value;
+     console.log(frase)
+    
+}
+ function encriptar(frase){
+     
+     let vocales={a:"ai",e:"enter",i:"imes",o:"ober",u:"utar"};
+
+     if((frase.includes("a")) || 
+     (frase.includes("e")) || (frase.includes("i")) || (frase.includes("o")) || (frase.includes("u")) ){
+          encriptado=(frase.replaceAll(/a|e|i|o|u/g, function(matched){return vocales[matched];}));
+      }  
+      document.getElementById('resultado').value=encriptado;
+      //document.write(encriptado);
+}
+
+function desencriptar(frase){
+     
+     let vocales={ai:"a",enter:"e",imes:"i",ober:"o",utar:"u"};
+
+     if((frase.includes("ai")) || 
+     (frase.includes("enter")) || (frase.includes("imes")) || (frase.includes("ober")) || (frase.includes("utar")) ){
+          desencriptado=(frase.replaceAll(/ai|enter|imes|ober|utar/g, function(matched){return vocales[matched];}));
+      }  
+      document.getElementById('resultado').value=desencriptado;
+      //document.write(desencriptado);
+      console.log(desencriptado);
+      console.log(frase);
+}
+
+
+
+console.log(frase);
+console.log(desencriptado);
+/*botonD.onclick= document.write(desencriptado);
+botonE.onclick= document.write(encriptado);*/
+
+
+</script>
