@@ -8,33 +8,33 @@
 <body>
      
      <header>
-          <h1><img src="Logo.png"></h1>
+          <h1><img src="imagenes/Logo.png"></h1>
      </header>
      <main>
           
           <section class="ingresarTexto">
-           <textarea id="texto" class="texto" placeholder="Ingrese texto aqui"></textarea>
+               <textarea id="texto" class="texto" rows="10" placeholder="ingresa tu secreto"></textarea>
+               <p class="aviso">Ingresa solo letras minúsculas y sin acentos</p>
 
-           
-          <div class="botones">
-               <button id="encriptar" onmousedown="obtenerTexto()" onclick="encriptar(frase)" >Encriptar</button>
-               <button id="desencriptar" onmousedown="obtenerTexto()" onclick="desencriptar(frase)">Desencriptar</button>
-          </div>
+               
+               <div class="botones">
+                    <button id="encriptar" onmousedown="obtenerTexto()" onclick="encriptar(frase)" onmouseup="imgDisplay()" >Encriptar</button>
+                    <button id="desencriptar" onmousedown="obtenerTexto()" onclick="desencriptar(frase)" onmouseup="imgDisplay()">Revelar</button>
+               </div>
           
 
           </section>
 
           <section class="cajaResultado">
-               <div class="imagen">
-                          <img src="Muñeco.png" alt="Imagen ningun mensaje encontrado">   
+               <div class="imagen" id="imagen">
+                          <img src="imagenes/Muñeco.png" alt="Imagen ningún mensaje encontrado">   
                           <h3>Ningún mensaje encontrado</h3>
                           <p>Ingresa el texto que desees encriptar o desencriptar</p>
-               </textarea>
                </div>
-              
-                    <textarea id="resultado" readonly=""> </textarea>
-                         <button id="copiarTexto">Copiar texto</button>
-             
+               <div id="cajaR" style="display: none ;">
+                    <textarea id="resultado" readonly="" rows="10"> </textarea>
+                         <button id="copiarTexto" onclick="copiarTexto()">Copiar</button>
+               </div>
                
           </section>
         
@@ -42,55 +42,16 @@
           
          
      </main>
+    
+     <footer>
+          <br>
+          <p>Create by  Guillermo_perez | Oracle Next Education && Alura LATAM <br>
+          <a href="https://www.linkedin.com/in/guillermo-perez-dev"><img src="imagenes/linkedin_logo.png" width="20" height="20"> </a>
+               <img src="imagenes/github_logo.png" width="60" height="20">
+          </p>
+     </footer>
      
 </body>
 </html>
 
-<script>
- var encriptado ="";
- var desencriptado = "";
- var frase ="";
- var botonE= document.getElementById('encriptar');
- var botonD= document.getElementById('desencriptar');
-
-
- function obtenerTexto(){
-     frase = document.getElementById('texto').value;
-     console.log(frase)
-    
-}
- function encriptar(frase){
-     
-     let vocales={a:"ai",e:"enter",i:"imes",o:"ober",u:"utar"};
-
-     if((frase.includes("a")) || 
-     (frase.includes("e")) || (frase.includes("i")) || (frase.includes("o")) || (frase.includes("u")) ){
-          encriptado=(frase.replaceAll(/a|e|i|o|u/g, function(matched){return vocales[matched];}));
-      }  
-      document.getElementById('resultado').value=encriptado;
-      //document.write(encriptado);
-}
-
-function desencriptar(frase){
-     
-     let vocales={ai:"a",enter:"e",imes:"i",ober:"o",utar:"u"};
-
-     if((frase.includes("ai")) || 
-     (frase.includes("enter")) || (frase.includes("imes")) || (frase.includes("ober")) || (frase.includes("utar")) ){
-          desencriptado=(frase.replaceAll(/ai|enter|imes|ober|utar/g, function(matched){return vocales[matched];}));
-      }  
-      document.getElementById('resultado').value=desencriptado;
-      //document.write(desencriptado);
-      console.log(desencriptado);
-      console.log(frase);
-}
-
-
-
-console.log(frase);
-console.log(desencriptado);
-/*botonD.onclick= document.write(desencriptado);
-botonE.onclick= document.write(encriptado);*/
-
-
-</script>
+<script src="encriptador.js"></script>
